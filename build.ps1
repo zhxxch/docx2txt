@@ -1,0 +1,1 @@
+Get-Content .\docx2txt.cs -Raw | .\csc.ps1 -OutFile docx2txt.exe
