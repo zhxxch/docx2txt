@@ -1,1 +1,2 @@
 *.docx binary diff=docx
+*.DOCX binary diff=docx

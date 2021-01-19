@@ -16,8 +16,10 @@ namespace Docx2txt
         static void Main(string[] args)
         {
 			XmlNamespaceManager WpNs = new XmlNamespaceManager(new NameTable());
-        WpNs.AddNamespace("w", "http://schemas.openxmlformats.org/wordprocessingml/2006/main");
-			ZipArchive DocZip = ZipFile.OpenRead(args[0]);
+        	WpNs.AddNamespace("w",
+				"http://schemas.openxmlformats.org/wordprocessingml/2006/main");
+			FileStream DocFile = File.Open(args[0],FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+			ZipArchive DocZip = new ZipArchive(DocFile, ZipArchiveMode.Read);
 			Stream WpXml = DocZip.GetEntry(
 			"word/document.xml").Open();
 			IEnumerable<XElement> ParagraphElems = XDocument.Load(WpXml).XPathSelectElements("//w:p", WpNs);
@@ -25,6 +27,7 @@ namespace Docx2txt
 				Console.WriteLine(pnode.Value);
 			}
 			DocZip.Dispose();
+			DocFile.Dispose();
         }
     }
 }
