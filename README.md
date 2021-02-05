@@ -1,6 +1,8 @@
 docx2txt - C#
 ========
 
+[Download docx2txt.exe](https://github.com/zhxxch/docx2txt/releases/download/v1/docx2txt.exe)
+
 ## Usage
 
 `.gitattributes`:
